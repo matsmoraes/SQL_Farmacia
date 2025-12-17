@@ -1,0 +1,1 @@
+CREATE VIEW mais_vendidos AS SELECT codigo, nome, unidade, apresentacao, tipo_produto, sum(quantidade_venda) AS vendas FROM produto INNER JOIN venda ON produto.codigo = venda.codigo_venda GROUP BY codigo ORDER BY vendas DESC, nome;

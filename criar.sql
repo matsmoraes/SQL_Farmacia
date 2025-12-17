@@ -1,0 +1,7 @@
+CREATE TABLE fornecedor (CPF_CNPJ varchar(20),nome varchar(225),endereco text,telefone varchar(20),ramo_de_atividade varchar(225),PRIMARY KEY (CPF_CNPJ));
+CREATE TYPE atributo_composto AS (registro_anvisa TEXT,tarja TEXT,controlado INTEGER,receita INTEGER);
+CREATE TABLE produto (codigo char(13),nome varchar(225),unidade varchar(20),apresentacao varchar(20),tipo_produto varchar(20),dados_medicamento atributo_composto,PRIMARY KEY (codigo));
+CREATE TABLE cliente (CPF_CNPJ varchar(20),nome varchar(225),endereco text,telefone varchar(20),data_nascimento date,data_cadastro date,ramo_de_atividade varchar(225),necessidades_especiais boolean,aposentado boolean,PRIMARY KEY (CPF_CNPJ));
+CREATE TABLE compra (id_compra int2 PRIMARY KEY,fornecedor text,codigo_compra char(13), lote char(14), data_compra date,data_validade date,unidade_compra varchar(20),quantidade_compra int2,preco_unitario_compra decimal(6,2),FOREIGN KEY (fornecedor) REFERENCES fornecedor(CPF_CNPJ),FOREIGN KEY (codigo_compra) REFERENCES produto(codigo));
+CREATE TABLE venda (id_venda int2 PRIMARY KEY,codigo_venda char(13),cliente varchar(225),data_venda date,unidade_venda varchar(20),quantidade_venda int2,preco_unitario_venda decimal(6,2),FOREIGN KEY (codigo_venda) REFERENCES produto(codigo),FOREIGN KEY (cliente) REFERENCES cliente(CPF_CNPJ));
+CREATE TABLE dados_saude (cpf_cliente varchar(20),alergias varchar(225),medicamentos_controlados varchar(225),observacoes_medicas text,FOREIGN KEY (cpf_cliente) REFERENCES cliente(CPF_CNPJ));

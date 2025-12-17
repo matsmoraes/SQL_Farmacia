@@ -1,0 +1,2 @@
+UPDATE produto SET nome = 'Multivitamínico Adulto', unidade = 'mg' WHERE codigo = '7891016789010';
+UPDATE produto SET apresentacao = 'caixa', tipo_produto = 'Medicamento' WHERE codigo = '7891018901234';

@@ -1,0 +1,1 @@
+CREATE VIEW estoque AS SELECT codigo, nome, SUM(COALESCE(quantidade_compra,0) - COALESCE(quantidade_venda,0)) AS quantidade_estoque FROM compra RIGHT JOIN produto ON produto.codigo = compra.codigo_compra LEFT JOIN venda ON produto.codigo = venda.codigo_venda GROUP BY codigo ORDER BY nome;
